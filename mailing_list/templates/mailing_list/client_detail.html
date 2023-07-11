@@ -1,0 +1,30 @@
+{% extends 'mailing_list/base.html' %}
+
+
+{% block content%}
+
+<div class="p-5 mb-4 bg-light rounded-3">
+
+    <div class="container-fluid py-5">
+
+        <h1 class="display-5 fw-bold"></h1>
+        <p><h4>Имя</h4></p>
+        <p class="col-md-8 fs-4">{{object.name}}</p>
+        <p><h4>Фамилия</h4></p>
+        <p class="col-md-8 fs-4">{{object.surname}}</p>
+        <p><h4>Отчество</h4></p>
+        {% if object.patronymic%}
+        <p class="col-md-8 fs-4">{{object.patronymic}}</p>
+        {% else %}
+        <p class="col-md-8 fs-4">Отчество не указано</p>
+        {% endif %}
+        <p><h4>Почта</h4></p>
+         <p class="col-md-8 fs-4">{{object.email}}</p>
+        <p><a class="btn btn-primary btn-lg" href="{%url 'mailing_list:client_list'%}">Назад &raquo;</a></p>
+
+    </div>
+</div>
+
+
+{% endblock %}
+

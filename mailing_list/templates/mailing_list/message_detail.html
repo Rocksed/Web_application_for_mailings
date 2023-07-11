@@ -1,0 +1,31 @@
+{% extends 'mailing_list/base.html' %}
+
+
+{% block content%}
+
+<div class="p-5 mb-4 bg-light rounded-3">
+
+    <div class="container-fluid py-5">
+        <p><h4>Тема рассылки</h4></p>
+
+<!--        {% for history_item in object.fullinfo_set.all %}-->
+
+        <h1 class="display-5 fw-bold"></h1>
+        <p><h4>Тема рассылки</h4></p>
+        <p class="col-md-8 fs-4">{{object.letter_subject}}</p>
+        <p><h4>Тело письма</h4></p>
+        <p class="col-md-8 fs-4">{{object.letter_body}}</p>
+        <p><h4>Время рассылки</h4></p>
+
+        <p class="col-md-8 fs-4">{{history_item.for_who}}</p>
+        
+<!--        <p><h4>Статус</h4></p>-->
+
+<!--        <p class="col-md-8 fs-4">{{history_item.status}}</p>-->
+        {%endfor%}
+        <p><a class="btn btn-primary btn-lg" href="{%url 'mailing_list:mail_list'%}">Назад &raquo;</a></p>
+
+    </div>
+</div>
+
+{% endblock %}

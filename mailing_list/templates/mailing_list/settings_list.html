@@ -1,0 +1,48 @@
+{% extends 'mailing_list/base.html'%}
+{%block content%}
+
+
+<p><a class="btn btn-outline-secondary" href="{% url 'mailing_list:mail_create'%}" role="button">Создать рассылку</a></p>
+<p><a class="btn btn-outline-secondary" href="{% url 'mailing_list:message_create'%}" role="button">Создать сообщение</a></p>
+<table class="table caption-top">
+    <caption>Все рассылки</caption>
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Начало рассылки</th>
+        <th scope="col">Конец рассылки</th>
+        <th scope="col">Периодичность</th>
+        <th scope="col">Статус</th>
+
+        <th scope="col">Сообщение</th>
+        <th scope="col"></th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for object in object_list%}
+    <tr>
+        <th scope="row">1</th>
+        <td>{{object.start_time}}</td>
+        <td>{{object.end_time}}</td>
+        <td>{{object.frequency}}</td>
+        <td>{{object.status}}</td>
+        <td>
+
+            {% if object.author == user%}
+            <p><a class="btn btn-outline-info btn-sm" href="{%url 'mailing_list:mail_update' object.pk%}">Изменить &raquo;</a></p>
+
+            {%endif%}
+
+
+            <p><a class="btn btn-outline-secondary btn-sm" href="{%url 'mailing_list:mail_det' object.pk%}">Подробнее &raquo;</a></p>
+
+        </td>
+        {%endfor%}
+
+    </tbody>
+</table>
+
+{%endblock%}
+

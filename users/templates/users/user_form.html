@@ -1,0 +1,51 @@
+{%extends 'mailing_list/base.html'%}
+{%block content%}
+{% load crispy_forms_tags %}
+<div class="col-6">
+    <div class="card">
+        <div class="card-header bg-primary">
+            <h3 class="card-title">Профиль</h3>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                {{form|crispy}}
+
+                <input class="btn btn-primary" type="submit"
+                       value="{% if object %}Изменить{% else %} Создать {% endif %} ">
+            </form>
+        </div>
+    </div>
+
+</div>
+<div class="col-6">
+    <div class="card">
+        <div class="card-body">
+            {%if object.is_verified_email%}
+            <p>Почта подтверждена</p>
+
+            {%else%}
+            <h5>Подтвердите почту</h5>
+
+            <p><p><a class="btn btn btn-primary btn-sm" href="{% url 'users:verify'%}">Подтвердить почту&raquo;</a></p></p>
+            {%endif%}
+        </div>
+    </div>
+</div>
+<!--<div class="col-6">-->
+<!--    <div class="card">-->
+<!--        <div class="card-header bg-primary">-->
+<!--            <h3 class="card-title"></h3>-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+
+
+<!--              <p><a class="btn btn-primary btn-lg" href="{% url 'users:verify'%}">Подтвердить почту&raquo;</a></p>-->
+
+
+<!--        </div>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+{%endblock%}

@@ -1,0 +1,21 @@
+{% extends 'mailing_list/base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <div>
+        <div class="card mx-auto" style="max-width: 400px;">
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{form|crispy}}
+
+                    <div style="text-align: center;">
+                        <input class="btn btn-primary" type="submit" value="{% if object %}Изменить{% else %} Создать {% endif %}">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

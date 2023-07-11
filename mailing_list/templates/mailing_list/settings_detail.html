@@ -1,0 +1,25 @@
+{% extends 'mailing_list/base.html'%}
+{% block content%}
+<div class="card text-center">
+  <div class="card-header">
+    Клиенты
+  </div>
+  <div class="card-body">
+      {%for client in object.clients.all%}
+      <h5 class="card-title">{{client}}</h5>
+      {%endfor%}
+    <p class="card-text">Начало рассылки - {{object.start_time}}</p>
+    <p class="card-text">Конец рассылки - {{object.end_time}}</p>
+    <p class="card-text">Сообщение  - {{object.message.letter_body}}</p>
+    <p class="card-text">Дата последней отправки  - {{object.last_run}}</p>
+    <p class="card-text">Автор рассылки  - {{object.author}}</p>
+
+    {% if perms.mailing_list.can_deactivate_settings%}
+    <p><a href="{% url 'mailing_list:toggle_status' object.pk %}" class="btn btn-danger">Отключить </a></p>
+     {%endif%}
+  </div>
+  <div class="card-footer text-body-secondary">
+
+  </div>
+</div>
+{% endblock %}

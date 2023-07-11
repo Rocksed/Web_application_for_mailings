@@ -1,0 +1,39 @@
+{%extends 'mailing_list/base.html'%}
+{%block content%}
+{% load mediapath %}
+{% load cuttext %}
+{%for blog in blogs%}
+
+<div class="col-lg-4">
+    <div class="card">
+        <div class="card-body">
+
+            <p><img src="{{blog.img|mediapath}}" width="200" height="200" alt=""></p>
+
+
+            <h2>{{blog.header}}
+            </h2>
+            <p>{{blog.content|cut}} </p>
+
+
+        </div><!-- /.col-lg-4 -->
+    </div>
+</div>
+{%endfor%}
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light">Статистика</h1>
+                    <p class="lead text-body-secondary">Всего рассылок - {{settings_count}}</p>
+                    <p class="lead text-body-secondary">Активных рассылок - {{settings_active}}</p>
+                    <p class="lead text-body-secondary">Количество клиентов - {{clients_count}}</p>
+                    <p>
+                        <a href="{%url 'mailing_list:client_list' %}" class="btn btn-primary my-2">Перейти к
+                            клиентам</a>
+                        <a href="{%url 'mailing_list:mail_list' %}" class="btn btn-secondary my-2">Перейти к
+                            рассылкам </a>
+                    </p>
+                </div>
+            </div>
+        </section>
+        {%endblock%}

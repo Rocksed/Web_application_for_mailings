@@ -1,0 +1,29 @@
+{%extends 'mailing_list/base.html'%}
+{% block content%}
+{% load mediapath %}
+{% load cuttext %}
+
+{%for object in object_list%}
+
+
+<div class="col-lg-4">
+    <div class="card">
+        <div class="card-body">
+
+            <p><img src="{{object.img|mediapath}}" width="200" height="200" alt=""></p>
+
+
+            <h2>{{object.header}}
+            </h2>
+            <p>{{object.content|cut}} </p>
+
+           <p><a class="btn btn-dark" href="{% url 'blog:blog_detail' object.pk %}">Подробнее&raquo;</a></p>
+
+
+
+
+        </div><!-- /.col-lg-4 -->
+    </div>
+</div>
+{%endfor%}
+{%endblock%}

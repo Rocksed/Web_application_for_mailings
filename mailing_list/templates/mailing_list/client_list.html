@@ -1,0 +1,27 @@
+{% extends 'mailing_list/base.html'%}
+
+{% block content%}
+<p><a class="btn btn-outline-secondary" href="{% url 'mailing_list:client_add'%}" role="button">Добавить клиента </a>
+</p>
+
+{% for object in object_list%}
+
+
+<div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Клиент</h5>
+
+            <p><h4>{{object.surname}} {{object.name}} {%if object.patronymic %} {{object.patronymic}}
+            {%endif%}</h4></p>
+            <p><h5>{{object.email}}</h5></p>
+
+            <p><a class="btn btn-dark" href="{% url 'mailing_list:client_detail' object.pk %}">Подробнее&raquo;</a></p>
+
+        </div>
+    </div>
+</div>
+
+
+{%endfor%}
+{%endblock%}
